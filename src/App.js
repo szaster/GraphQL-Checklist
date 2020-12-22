@@ -36,7 +36,7 @@ function App() {
           type="text"
           placeholder="Write your todo"
         />
-        <button className="pa2 f4 bg-green" type="submit">
+        <button className="pa2 f4 bg-yellow" type="submit">
           Create
         </button>
       </form>
