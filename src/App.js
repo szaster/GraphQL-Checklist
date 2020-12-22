@@ -20,15 +20,21 @@ function App() {
   const { data, loading, error } = useQuery(GET_TODOS);
   if (loading) return <div>Loading todos...</div>;
   if (error) return <div>Error fetching todos!</div>;
+
   return (
-    <div>
-      <h1>GraphQL Checklist</h1>
+    <div className="vh-100 code flex flex-column items-center bg-purple white pa3 fl-1 ">
+      <h1 className="f2-l">
+        GraphQL Checklist{" "}
+        <span role="img" aria-label="Checkmark">
+          ✅
+        </span>
+      </h1>
       {/* Todo Form */}
-      <form>
+      <form className="mb3">
         <input type="text" placeholder="Write your todo" />
         <button type="submit">Create</button>
       </form>
-      {/* Todo Lidt */}
+      {/* Todo List */}
       <div>
         {data.todos.map((todo) => (
           <p key={todo.id}>
