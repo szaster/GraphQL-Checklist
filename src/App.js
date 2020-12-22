@@ -31,15 +31,23 @@ function App() {
       </h1>
       {/* Todo Form */}
       <form className="mb3">
-        <input type="text" placeholder="Write your todo" />
-        <button type="submit">Create</button>
+        <input
+          className="pa2 f4 b--dashed"
+          type="text"
+          placeholder="Write your todo"
+        />
+        <button className="pa2 f4 bg-green" type="submit">
+          Create
+        </button>
       </form>
       {/* Todo List */}
-      <div>
+      <div className="flex items-center justify-center flex-column">
         {data.todos.map((todo) => (
           <p key={todo.id}>
-            <span>{todo.text}</span>
-            <button>&times;</button>
+            <span className="pointer list pa1 f3">{todo.text}</span>
+            <button className="bg-transparent bn f4">
+              <span className="red">&times;</span>
+            </button>
           </p>
         ))}
       </div>
