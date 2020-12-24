@@ -64,7 +64,9 @@ function App() {
       <div className="flex items-center justify-center flex-column">
         {data.todos.map((todo) => (
           <p onDoubleClick={() => handleToggleTodo(todo)} key={todo.id}>
-            <span className="pointer list pa1 f3">{todo.text}</span>
+            <span className={`pointer list pa1 f3 ${todo.done && "strike"}`}>
+              {todo.text}
+            </span>
             <button className="bg-transparent bn f4">
               <span className="red">&times;</span>
             </button>
