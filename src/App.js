@@ -83,7 +83,14 @@ function App() {
   async function handleDeleteTodo({ id }) {
     const isConfirmed = window.confirm("Do you want to delete this todo?");
     if (isConfirmed) {
-      const data = await deleteTodo({ variables: { id } });
+      const data = await deleteTodo({
+        variables: { id },
+        update: (cache) => {
+          const prevData = cache.readQuery({ query: GET_TODOS });
+          const newTodos = prevData.todos.filter((todo) => todo.id !== id);
+          cache.writeQuery({ query: GET_TODOS, data: { todos: newTodos } });
+        },
+      });
       console.log("deleted todos", data);
     }
   }
