@@ -26,18 +26,45 @@ const TOGGLE_TODO = gql`
   }
 `;
 
+const ADD_TODO = gql`
+  mutation addTodo($text: String!) {
+    insert_todos(objects: { text: $text }) {
+      returning {
+        done
+        id
+        text
+      }
+    }
+  }
+`;
+
 //delete todos
 //list todos
 
 function App() {
+  const [todoText, setTodoText] = React.useState("");
   const { data, loading, error } = useQuery(GET_TODOS);
   const [toggleTodo] = useMutation(TOGGLE_TODO);
+  const [addTodo] = useMutation(ADD_TODO, {
+    onCompleted: () => setTodoText(""),
+  });
 
   async function handleToggleTodo({ id, done }) {
     const data = await toggleTodo({ variables: { id, done: !done } });
-    console.log(data);
+    console.log("toggled todo:", data);
   }
 
+  async function handleAddTodo(event) {
+    event.preventDefault();
+    //to avoid blank spaces in input
+    if (!todoText.trim()) return;
+    const data = await addTodo({
+      variables: { text: todoText },
+      refetchQueries: [{ query: GET_TODOS }],
+    });
+    console.log("new todo", data);
+    // setTodoText("");
+  }
   if (loading) return <div>Loading todos...</div>;
   if (error) return <div>Error fetching todos!</div>;
 
@@ -50,11 +77,13 @@ function App() {
         </span>
       </h1>
       {/* Todo Form */}
-      <form className="mb3">
+      <form onSubmit={handleAddTodo} className="mb3">
         <input
           className="pa2 f4 b--dashed"
           type="text"
           placeholder="Write your todo"
+          onChange={(event) => setTodoText(event.target.value)}
+          value={todoText}
         />
         <button className="pa2 f4 bg-yellow" type="submit">
           Create
