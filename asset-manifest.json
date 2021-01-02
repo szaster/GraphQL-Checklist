@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.js": "/GraphQL-Checklist/static/js/main.67ce7033.chunk.js",
+    "runtime-main.js": "/GraphQL-Checklist/static/js/runtime-main.3efc9afc.js",
+    "static/js/2.b067b2d7.chunk.js": "/GraphQL-Checklist/static/js/2.b067b2d7.chunk.js",
+    "index.html": "/GraphQL-Checklist/index.html",
+    "static/js/2.b067b2d7.chunk.js.LICENSE.txt": "/GraphQL-Checklist/static/js/2.b067b2d7.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3efc9afc.js",
+    "static/js/2.b067b2d7.chunk.js",
+    "static/js/main.67ce7033.chunk.js"
+  ]
+}
