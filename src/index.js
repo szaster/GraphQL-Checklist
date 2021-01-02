@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
+// const { ApolloServer, gql } = require("apollo-server");
 import App from "./App";
-//instantioating a new client
+//instantiate a new client
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
 

@@ -86,8 +86,11 @@ function App() {
       const data = await deleteTodo({
         variables: { id },
         update: (cache) => {
+          //read from cache
           const prevData = cache.readQuery({ query: GET_TODOS });
+          // manually update cache
           const newTodos = prevData.todos.filter((todo) => todo.id !== id);
+          //write back to the query
           cache.writeQuery({ query: GET_TODOS, data: { todos: newTodos } });
         },
       });
